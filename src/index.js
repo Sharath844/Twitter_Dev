@@ -23,7 +23,11 @@ app.listen(3000, async() =>{
     tweet.comments.push(comment);
     await tweet.save();
      console.log(tweet);
-     */
+     
     const tweet = await tweetRepo.getAll(1, 3);
     console.log(tweet[0].contentWithEmail);
+
+    */
+   const tweet = await tweetRepo.create({content: 'With Hook'});
+   console.log(tweet);
 });
