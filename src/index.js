@@ -11,6 +11,6 @@ app.listen(3000, async() =>{
      console.log('Mongo db connected');
     
      let ser = new service();
-     await ser.create({content: 'Done with #refractor ?'})
+     await ser.create({content: '#NODE.js #EXpress.JS'})
     
 });
