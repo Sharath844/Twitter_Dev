@@ -27,8 +27,8 @@ app.listen(3000, async() =>{
      const users = await userRepo.getAll(); 
 
      const likeService = new LikeService();
-     await likeService.toggleLike(tweets[0].id, 'Tweet', users[0].id); 
-     
+     const response = await likeService.toggleLike(tweets[0].id, 'Tweet', users[0].id); 
+     console.log(response);
     /* const userRepo = new UserRepository();
      const user = await userRepo.create({
           email: 'Sharath@admin.com',
