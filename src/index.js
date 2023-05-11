@@ -2,8 +2,9 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import {connect} from './config/database.js';
 
-import { TweetRepository, UserRepository, LikeRepository} from './repository/index.js';
+import { TweetRepository, UserRepository, LikeRepository, CommentRepository} from './repository/index.js';
 import LikeService from './services/like-service.js';
+import CommentService from './services/comment-service.js';
 
 import apiRoutes from './routes/index.js';
 
@@ -20,21 +21,29 @@ app.listen(3000, async() =>{
      await connect();
      console.log('Mongo db connected');
      
+     
      const tweetRepo = new TweetRepository();
      const userRepo = new UserRepository();
+     
+     
      const tweets = await tweetRepo.getAll(0, 10);
     
      const users = await userRepo.getAll(); 
-
+     /*
      const likeService = new LikeService();
      const response = await likeService.toggleLike(tweets[0].id, 'Tweet', users[0].id); 
-     console.log(response);
-    /* const userRepo = new UserRepository();
+    
+    const userRepo = new UserRepository();
      const user = await userRepo.create({
           email: 'Sharath@admin.com',
           password: 'Sharath1234',
           name: 'Sharath'
      })
      */
+
+
+     const commentService = new CommentService();
+     const response = await commentService.create(tweets[0].id, 'Tweet', users[0].id, 'first comment on tweet model');
+      
     
 });
